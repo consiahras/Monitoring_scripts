@@ -1,0 +1,56 @@
+#!/bin/bash
+
+for a in 1 2; do
+    for b in a b; do
+        echo "$a $b"
+    done
+done
+
+
+#!/usr/bin/perl
+
+foreach $a ('1', '2') {
+    foreach $b ('a', 'b') {
+        print "$a $b\n";
+    }
+}
+
+for a in [1, 2]:
+    for b in ['a', 'b']:
+        print(a, b)
+        
+  
+#Conditionals 
+#!/bin/bash
+
+if [ -d "/tmp" ] ; then
+    echo "/tmp is a directory"
+else 
+    echo "/tmp is not a directory"
+fi
+
+
+#!/usr/bin/perl
+
+if (-d "/tmp") {
+    print "/tmp is a directory\n";
+}
+else {
+    print "/tmp is not a directory\n";
+}
+
+#!/usr/bin/env python
+
+import os
+
+if os.path.isdir("/tmp"):
+    print("/tmp is a directory")
+else:
+    print("/tmp is not a directory")
+    
+    
+    
+
+
+
+
