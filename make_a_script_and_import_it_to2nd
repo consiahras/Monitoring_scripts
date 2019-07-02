@@ -1,0 +1,190 @@
+#BASH SCRIPT equilevant
+
+vi bashsysinfo_func.sh
+#!/usr/bin/env bash
+#A System Information Gathering Script
+
+#Command 1
+function uname_func ()
+{
+    UNAME="uname -a"
+    printf "Gathering system information with the $UNAME command: \n\n"
+    $UNAME
+}
+#Command 2
+function disk_func ()
+{
+    DISKSPACE="df -h"
+    printf "Gathering diskspace information with the $DISKSPACE command: \n\n"
+    $DISKSPACE
+}
+
+function main ()
+{
+    uname_func
+    disk_func
+}
+
+main
+
+#*****************************************************************************
+
+
+#PYTHON3 #
+
+vi pysysinfo_func.py
+
+#!/usr/bin/env python
+#A System Information Gathering Script
+import subprocess
+
+#Command 1
+def uname_func():
+
+    uname = "uname"
+    uname_arg = "-a"
+    print ("Gathering system information with %s command:\n" % uname)
+    subprocess.call([uname, uname_arg])
+
+#Command 2
+def disk_func():
+
+    diskspace = "df"
+    diskspace_arg = "-h"
+    print("Gathering diskspace information %s command:\n" % diskspace)
+    subprocess.call([diskspace, diskspace_arg])
+
+#Main function that call other functions
+def main():
+    uname_func()
+    disk_func()
+
+main()
+
+
+
+
+************* CALL This as an import elsewhere *******
+
+vi test3.py
+import pysysinfo
+
+*****
+#now ran the test3.py
+
+$python3 test3.py
+
+Reserved for migrate testing (migLooper)  $  python3 test3.py
+Gathering system information with uname command:
+
+Linux qa-db018 2.6.32-754.3.5.el6.x86_64 #1 SMP Tue Aug 14 12:02:44 PDT 2018 x86_64 x86_64 x86_64 GNU/Linux
+Gathering diskspace information df command:
+
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/sda3             2.0G  666M  1.2G  37% /
+tmpfs                  63G   44K   63G   1% /dev/shm
+/dev/sdb1              40G  177M   38G   1% /archlocal
+/dev/sda2             2.0G   72M  1.8G   4% /boot
+/dev/sda1             200M  260K  200M   1% /boot/efi
+/dev/sda11            976M   24M  902M   3% /home
+/dev/sdb3              11T  1.9T  8.5T  19% /local
+/dev/sda13            244G   62G  170G  27% /opt
+/dev/sda14             98G  1.5G   92G   2% /opt/logs
+/dev/sdb2              40G  177M   40G   1% /redo1
+/dev/sda4              40G  177M   40G   1% /redo2
+/dev/sda12            976M  6.1M  919M   1% /tmp
+/dev/sda9             3.9G  1.3G  2.4G  35% /usr
+/dev/sda10            3.9G  1.2G  2.5G  31% /usr/local
+/dev/sda6             9.8G  837M  8.5G   9% /var
+/dev/sda7             9.8G  935M  8.4G  10% /var/log
+/dev/sda8             9.8G  1.3G  8.0G  14% /var/log/audit
+gfs1x.prod.svale.netledger.com:/data
+                      1.1P  523T  559T  49% /gfsnet1
+gfs2x.prod.svale.netledger.com:/data
+                      541T  376T  165T  70% /gfsnet2
+gfs4x.prod.svale.netledger.com:/data
+                      1.1P  613T  469T  57% /gfsnet4
+gfs5x.prod.svale.netledger.com:/data
+                      785T  343T  442T  44% /gfsnet5
+gfs6x.prod.svale.netledger.com:/data
+                      1.9P  929T  934T  50% /gfsnet6
+gfs8x.prod.svale.netledger.com:/data
+                      785T  406T  379T  52% /gfsnet8
+gfs7x.prod.svale.netledger.com:/data
+                      677T  236T  442T  35% /gfsnet7
+gfs9x.prod.svale.netledger.com:/data
+                      1.9P  699M  1.9P   1% /gfsnet9
+fs013.prod.svale.netledger.com:/data1/archlog
+                       33T  8.0T   25T  25% /fs_mnt/fs013.prod.svale.netledger.com
+fs035.prod.svale.netledger.com:/data1/archlog
+                       54T  2.2T   52T   4% /fs_mnt/fs035.prod.svale.netledger.com
+
+
+
+#the problem is that even if we dont want to call the code from import. The original script had at the bottom 
+function main ()
+{
+    uname_func
+    disk_func
+}
+
+main
+
+This makes them to call them even at import . to fix this we change original code to this:
+def main():
+    uname_func()
+    disk_func()
+
+if __name__ == "__main__":
+    main()
+    
+ ********************************* Modified Origina script ***********************************]
+vi pysysinfo_func_2.py
+#!/usr/bin/env python
+#A System Information Gathering Script
+import subprocess
+
+#Command 1
+def uname_func():
+
+    uname = "uname"
+    uname_arg = "-a"
+    print ("Gathering system information with %s command:\n" % uname)
+    subprocess.call([uname, uname_arg])
+
+#Command 2
+def disk_func():
+
+    diskspace = "df"
+    diskspace_arg = "-h"
+    print("Gathering diskspace information %s command:\n" % diskspace)
+    subprocess.call([diskspace, diskspace_arg])
+
+#modified Main function that call other functions
+def main():
+    uname_func()
+    disk_func()
+
+if __name__ == "__main__":
+    main()
+    
+ 
+ #now lets create a test4.py and import the second script
+ vi test4.py
+ import pysysinfo_func_2
+ #now this wont do anythin but it imports staff . To call them we just need to get their fucntions
+ #example
+ 
+ $  cat test5.py
+import pysysinfo_func_2
+pysysinfo_func_2.uname_func()
+
+$  python3 test5.py
+Gathering system information with uname command:
+
+Linux qa-db018 2.6.32-754.3.5.el6.x86_64 #1 SMP Tue Aug 14 12:02:44 PDT 2018 x86_64 x86_64 x86_64 GNU/Linux
+
+
+
+
+
