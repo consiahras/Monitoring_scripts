@@ -11,6 +11,48 @@ ls -l /tmp/
 total 0
 -rw-r--r--  1 ngift  wheel  0 Apr  7 00:26 file.txt
 
-#Python subprocess
+#Python subprocess   --> same logic as "sourcing" a file in bash
+#syntax:  subprocess.call(["some_command", "some_argument", "another_argument_or_path"])
 import subprocesss
 suprocess.call(["ls","-l ","/tmp/"])
+
+
+
+
+************************ Python Script to gather System information ************
+#!/usr/bin/env python
+#A System Information Gathering Script
+import subprocess
+        
+#Command 1
+uname = “uname”
+uname_arg = “-a”
+print "Gathering system information with %s command:\n" % uname
+subprocess.call([uname, uname_arg])
+        
+#Command 2
+diskspace = "df"
+diskspace_arg = "-h"
+print "Gathering diskspace information %s command:\n" % diskspace
+subprocess.call([diskspace, diskspace_arg])
+**************************** Bash equilevant ***********************************************
+#!/usr/bin/env bash
+#A System Information Gathering Script
+       
+#Command 1
+UNAME="uname -a"
+printf “Gathering system information with the $UNAME command: \n\n"
+$UNAME
+       
+#Command 2
+DISKSPACE="df -h"
+printf "Gathering diskspace information with the $DISKSPACE command: \n\n"
+$DISKSPACE
+
+
+#Another way is to use subprocess.call with this syntax:
+subprocess.call("df -h", shell=True)
+
+
+
+
