@@ -1,0 +1,16 @@
+#Bash print
+echo "I can become Yolo"
+
+#Python3
+print("I can become Yolo")
+
+
+
+#Bash statements 
+ls -l /tmp/
+total 0
+-rw-r--r--  1 ngift  wheel  0 Apr  7 00:26 file.txt
+
+#Python subprocess
+import subprocesss
+suprocess.call(["ls","-l ","/tmp/"])
