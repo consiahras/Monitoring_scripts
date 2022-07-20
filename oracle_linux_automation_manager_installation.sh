@@ -6,6 +6,9 @@ trap 'exec 2>&4 1>&3' 0 1 2 3
 exec 1>/var/log/provision.log 2>&1
 set -x
 
+#Enabling the required repository for installation
+sudo dnf config-manager --enable ol8_baseos_latest
+
 # Installing Oracle cloud agent
 sudo dnf install -y oracle-cloud-agent
 #Enabling firewall rules before installation
