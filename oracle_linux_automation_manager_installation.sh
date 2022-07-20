@@ -8,6 +8,7 @@ set -x
 
 #Enabling the required repository for installation
 sudo dnf config-manager --enable ol8_baseos_latest
+sudo dnf config-manager --enable ol8_automation ol8_addons ol8_UEKR6 ol8_appstream
 
 # Installing Oracle cloud agent
 sudo dnf install -y oracle-cloud-agent
@@ -19,8 +20,10 @@ sudo firewall-cmd --reload
 
 # install olam and vim
 #
-sudo dnf install oraclelinux-automation-manager-release-el8 -y
 dnf install vim -y
+sudo dnf install oraclelinux-automation-manager-release-el8 -y
+sudo dnf install ol-automation-manager -y
+
 
 # configure redis
 #
