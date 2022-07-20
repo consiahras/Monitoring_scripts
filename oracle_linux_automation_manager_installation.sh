@@ -6,6 +6,8 @@ trap 'exec 2>&4 1>&3' 0 1 2 3
 exec 1>/var/log/provision.log 2>&1
 set -x
 
+# Installing Oracle cloud agent
+sudo dnf install -y oracle-cloud-agent
 #Enabling firewall rules before installation
 #
 sudo firewall-cmd --add-service=http --permanent
