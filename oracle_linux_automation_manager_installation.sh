@@ -12,7 +12,7 @@ sudo dnf install -y oracle-cloud-agent
 #
 sudo firewall-cmd --add-service=http --permanent
 sudo firewall-cmd --add-service=https --permanent
-sudo firewall-cmd --reloa
+sudo firewall-cmd --reload
 
 # install olam and vim
 #
