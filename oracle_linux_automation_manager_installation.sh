@@ -80,13 +80,13 @@ http {
       default_type        application/octet-stream;
       include /etc/nginx/conf.d/*.conf;
     }
-    EOF
+EOF
 
-    sed -i 's/^CLUSTER_HOST_ID = "awx"/CLUSTER_HOST_ID = "localhost"/g' /etc/tower/settings.py
+sed -i 's/^CLUSTER_HOST_ID = "awx"/CLUSTER_HOST_ID = "localhost"/g' /etc/tower/settings.py
 
-    # start the OLAM service
-    #
-    systemctl enable --now ol-automation-manager.service
+# start the OLAM service
+#
+systemctl enable --now ol-automation-manager.service
 message: |
   --------------------------------------------------------------------
   Oracle Linux Automation Manager (OLAM) can be accessed by navigating
