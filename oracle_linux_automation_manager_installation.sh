@@ -19,7 +19,8 @@ sudo firewall-cmd --reload
 
 # install olam and vim
 #
-dnf install ol-automation-manager vim -y
+sudo dnf install oraclelinux-automation-manager-release-el8 -y
+dnf install vim -y
 
 # configure redis
 #
